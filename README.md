@@ -1,8 +1,8 @@
-# Sitgo
-A highly opinionated web framework
+# Dropkick
+A highly opinionated Content Management System
 
 # Goals
 - Separation of concerns between front-end and business logic
-- Sinatra based framework 
+- Using Sinatra based framework 
 
 
