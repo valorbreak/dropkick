@@ -5,5 +5,5 @@ import (
 )
 
 func Execute(){
-	fmt.Printf("Hey Core is working")
+	fmt.Printf("Hey Core is working\n")
 }

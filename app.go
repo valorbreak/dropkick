@@ -4,13 +4,10 @@ import (
 	"fmt"
 	"net/http"
 	"log"
-	"github.com/valorbreak/sitgo/model"
-	"github.com/valorbreak/sitgo/core"
+	"github.com/valorbreak/dropkick/model"
+	"github.com/valorbreak/dropkick/core"
+	"github.com/valorbreak/dropkick/routes"
 )
-
-func welcomeHandler(w http.ResponseWriter, r *http.Request){
-        fmt.Fprintf(w,"Welcome %s", r.URL.Path[1:])
-}
 
 func handler(w http.ResponseWriter, r *http.Request){
 	fmt.Fprintf(w,"Hi there, I love %s", r.URL.Path[1:])
@@ -22,11 +19,15 @@ func main() {
 	
 	x := model.Bad()
 	core.Execute()
+	routes.Execute()
+	
 	fmt.Println(x)
 	log.Printf("About to listen on "+port)
 
-	http.HandleFunc("/foo",handler)
-	http.HandleFunc("/",welcomeHandler)
+	welcome := routes.WelcomeHandler
+	view := routes.ViewHandler
+	http.HandleFunc("/foo", view)
+	http.HandleFunc("/", welcome)
 
 	// Start Listening to port
 	err := http.ListenAndServe(port, nil)

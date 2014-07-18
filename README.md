@@ -1,8 +1,11 @@
 # Dropkick
-A highly opinionated Content Management System
+Introducing a highly opinionated Content Management System,
+(EXPERIMENTAL) - Drop Kick GO!
+
 
 # Goals
-- Separation of concerns between front-end and business logic
-- Using Sinatra based framework 
+- Separation of Concerns between Business Logic and Templating
+- Dynamic content creation
+ 
 
 
