@@ -3,13 +3,13 @@ Introducing a highly opinionated Content Management System,
 (EXPERIMENTAL) - Drop Kick GO!
 
 
-# Goals
+## Goals
 - Separation of Concerns between Business Logic and Templating
 - Dynamic content creation
 
-# Requirements
+## Requirements
 - Go
 
-# Command Line Installation
+## Command Line Installation
 - `go run app.go`
-
+- open localhost:8080
