@@ -6,6 +6,10 @@ Introducing a highly opinionated Content Management System,
 # Goals
 - Separation of Concerns between Business Logic and Templating
 - Dynamic content creation
- 
 
+# Requirements
+- Go
+
+# Command Line Installation
+- `go run app.go`
 
