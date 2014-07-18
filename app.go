@@ -10,6 +10,8 @@ import (
 	"github.com/valorbreak/dropkick/routes"
 )
 
+// this is the main function
+
 func main() {
 	fmt.Println("Hello, test")
 	port := ":8080"
