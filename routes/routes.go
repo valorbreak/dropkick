@@ -14,5 +14,13 @@ func WelcomeHandler(w http.ResponseWriter, r *http.Request){
 }
 
 func ViewHandler(w http.ResponseWriter, r *http.Request){
-        fmt.Fprintf(w,"Hi there, I love %s", r.URL.Path[1:])
+        fmt.Fprintf(w,"<h1>Hi there, I love %s</h1>", r.URL.Path[1:])
+}
+
+func JsonHandler(w http.ResponseWriter, r *http.Request){
+	const jsonStream = `
+		{"json":"test"}
+	`
+
+	fmt.Fprint(w,jsonStream)
 }

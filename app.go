@@ -3,15 +3,12 @@ package main
 import (
 	"fmt"
 	"net/http"
+//	"html/template"
 	"log"
 	"github.com/valorbreak/dropkick/model"
 	"github.com/valorbreak/dropkick/core"
 	"github.com/valorbreak/dropkick/routes"
 )
-
-func handler(w http.ResponseWriter, r *http.Request){
-	fmt.Fprintf(w,"Hi there, I love %s", r.URL.Path[1:])
-}
 
 func main() {
 	fmt.Println("Hello, test")
@@ -26,8 +23,10 @@ func main() {
 
 	welcome := routes.WelcomeHandler
 	view := routes.ViewHandler
+	json := routes.JsonHandler
 	http.HandleFunc("/foo", view)
 	http.HandleFunc("/", welcome)
+	http.HandleFunc("/api", json);
 
 	// Start Listening to port
 	err := http.ListenAndServe(port, nil)
