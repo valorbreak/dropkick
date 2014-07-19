@@ -1,4 +1,4 @@
-# Dropkick
+git # Dropkick
 Introducing a highly opinionated Content Management System,
 (EXPERIMENTAL) - Drop Kick GO!
 
