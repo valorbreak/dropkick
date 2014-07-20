@@ -18,10 +18,12 @@ func main() {
 	core.Execute()
 	fmt.Println(x)
 	
-	routes.AppStart(port)
 
 	// Logging 
 	log.Printf("About to listen on " + port)
+	
+	routes.AppStart(port)
+
 
 }
 // phpstorm commit
