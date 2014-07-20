@@ -3,24 +3,26 @@ package routes
 import (
 	"fmt"
 	"net/http"
+	"log"
 )
 
-func Execute() {
+
+func AppStart(port string) error{
+	// Logging
 	fmt.Printf("Hey Route is working\n")
+	
+	// Set the Urls here
+	http.HandleFunc("/", WelcomeHandler)
+	http.HandleFunc("/json", JsonHandler)
+	http.HandleFunc("/view", ViewHandler)
+
+	// Start Listening on port
+	err := http.ListenAndServe(port, nil)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
+
+	return err;
 }
 
-func WelcomeHandler(w http.ResponseWriter, r *http.Request){
-	fmt.Fprintf(w,"Welcome %s", r.URL.Path[1:])
-}
 
-func ViewHandler(w http.ResponseWriter, r *http.Request){
-	fmt.Fprintf(w,"<h1>Hi there, I love %s</h1>", r.URL.Path[1:])
-}
-
-func JsonHandler(w http.ResponseWriter, r *http.Request){
-	const jsonStream = `
-		{"json":"test"}
-	`
-
-	fmt.Fprint(w,jsonStream)
-}
