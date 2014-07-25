@@ -13,6 +13,9 @@ type AppConf struct{
 	MgoURL string
 }
 
+/*
+ * Since we are returning the router, we could replace this with any mux routing libraries	
+ */
 func GetRouter(conf AppConf) *mux.Router{
 	// Set the Urls here
 	fs := http.Dir(conf.Dir)
