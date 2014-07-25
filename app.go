@@ -6,7 +6,7 @@ import (
 	"github.com/valorbreak/dropkick/model"
 	"github.com/valorbreak/dropkick/routes"
 	"gopkg.in/mgo.v2"
-//	"gopkg.in/mgo.v2/bson"
+	//"gopkg.in/mgo.v2/bson"
 	"log"
 	"flag"
 )
@@ -27,7 +27,6 @@ func main() {
 
 	conf := dkConf{*port, *mgoURL}		
 	routeConfig := routes.AppConf{*port, *dir}
-	
 	defer routes.AppStart(routeConfig)
 
 	x := model.Bad()
@@ -50,4 +49,3 @@ func main() {
 
 
 }
-// phpstorm commit

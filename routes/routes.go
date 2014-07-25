@@ -8,6 +8,8 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// Exportable struct
+// Capitalize the type and the fields to make it Exportable
 type AppConf struct{
 	Port string
 	Dir string
@@ -30,9 +32,9 @@ func AppStart(conf AppConf) error{
 	r.StrictSlash(true) 	
 	
 	// Set Routing Here
-	r.HandleFunc("/api/view", ViewHandler)
-	r.HandleFunc("/api/json", JsonHandler)
-	r.HandleFunc("/api/user", UserHandler)
+	r.HandleFunc("/api/view", viewHandler)
+	r.HandleFunc("/api/json", jsonHandler)
+	r.HandleFunc("/api/user", userHandler)
 	r.HandleFunc("/api/user/edit", userEditHandler)
 	r.HandleFunc("/", JsonHandler)
 
@@ -57,5 +59,3 @@ func AppStart(conf AppConf) error{
 
 	return err;
 }
-
-
