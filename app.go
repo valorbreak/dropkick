@@ -23,6 +23,7 @@ func main() {
 	dir := flag.String("directory", "web/", "directory of files")
 	flag.Parse()
 
+	log.Printf("Static File Directory: "+*dir)
 	conf := dkConf{*port, *mgoURL}
 	routeConfig := core.AppConf{*port, *dir, *mgoURL}
 	// defer - runs the specified function before (this) function ends
