@@ -4,12 +4,11 @@ import (
 	//	"fmt"
 	"net/http"
 	"log"
-	//	"flag"
 	"github.com/gorilla/mux"
 )
 
 // Exportable struct
-// Capitalize the type and the fields to make it Exportable
+// Capitalize the type and the fields to make it exportable
 type AppConf struct{
 	Port string
 	Dir string
@@ -46,7 +45,7 @@ func AppStart(conf AppConf) error{
 	
 	// Handle Mux
 	http.Handle("/",r)
-	//http.Handle("/",fileHandler)
+	// http.Handle("/",fileHandler)
 
 	log.Printf("Resources are now available")
 	
