@@ -5,10 +5,10 @@ import (
 	"net/http"
 	"log"
 )
-
-// Private Functions always have the first letter lowercased
-// These functions are only viewable inside the package
-
+/**
+ *	Private Functions always have the first letter lowercased
+ *	These functions are only viewable inside the package
+ */
 func welcomeHandler(w http.ResponseWriter, r *http.Request){
 	log.Printf("Accessed: /%s", r.URL.Path[1:])
 	fmt.Fprintf(w,"Welcome %s", r.URL.Path[1:])
