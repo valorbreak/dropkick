@@ -23,3 +23,18 @@ func JsonHandler(w http.ResponseWriter, r *http.Request){
 	log.Printf("Accessed: /%s", r.URL.Path[1:])
 	fmt.Fprint(w,jsonStream)
 }
+
+func UserHandler(w http.ResponseWriter, r *http.Request){
+	jsonStream := `{"User":"`+ r.URL.Path[1:] +`"}`
+	log.Printf("Accessed: /%s", r.URL.Path[1:])
+	log.Printf("Debug %s", r)
+	fmt.Fprint(w,jsonStream)
+}
+
+
+func userEditHandler(w http.ResponseWriter, r *http.Request){
+	jsonStream := `{"Edit User":"`+ r.URL.Path[1:] +`"}`
+	log.Printf("Accessed: /%s", r.URL.Path[1:])
+	log.Printf("Debug %s", r)
+	fmt.Fprint(w,jsonStream)
+}

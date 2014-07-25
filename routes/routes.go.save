@@ -1,0 +1,66 @@
+package routes
+
+import (
+	"fmt"
+	"net/http"
+	"log"
+//	"flag"
+	"github.com/gorilla/mux"
+)
+
+func AppStart(port string) error{
+	// Logging
+	fmt.Printf("Hey Route is working\n")
+	
+	
+	// Set the Urls here
+	dir := flag.String("directory", "web/", "directory of files")
+	flag.Parse()
+
+	fs := http.Dir(*dir)
+	fileHandler := http.FileServer(fs)
+
+	/*
+	app := http.NewServeMux()
+
+	app.HandleFunc("/view", ViewHandler)
+	app.HandleFunc("/json", JsonHandler)
+	app.HandleFunc("/new/test", JsonHandler)
+	app.HandleFunc("/file", fileHandler)
+	
+	http.Handle("/", app)
+	http.Handle("/static", http.StripPrefix("/static/",fileHandler))
+	*/
+
+
+	/*
+	http.Handle("/",fileHandler)
+	http.Handle("/static/", fileHandler)
+	
+	http.HandleFunc("/", WelcomeHandler)
+	http.HandleFunc("/view", ViewHandler)
+	http.HandleFunc("/json", JsonHandler)
+	http.HandleFunc("/new", JsonHandler)
+	http.HandleFunc("/new/", JsonHandler)
+	*/
+
+	// Gorilla Mux
+	r := mux.NewRouter()
+	r.HandleFunc("/view", ViewHandler)
+	r.HandleFunc("/json", JsonHandler)
+	
+	r.PathPrefix("/static")
+	http.Handle("/",r)
+
+	log.Printf("/, /json, /view is available")
+	
+	// Start Listening on port
+	err := http.ListenAndServe(port, nil)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
+	}
+
+	return err;
+}
+
+
