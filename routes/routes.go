@@ -21,18 +21,7 @@ func AppStart(conf AppConf) error{
 	fs := http.Dir(conf.Dir)
 	fileHandler := http.FileServer(fs)
 
-	/*
-	app := http.NewServeMux()
-
-	app.HandleFunc("/view", ViewHandler)
-	app.HandleFunc("/json", JsonHandler)
-	app.HandleFunc("/new/test", JsonHandler)
-	app.HandleFunc("/file", fileHandler)
 	
-	http.Handle("/", app)
-	http.Handle("/static", http.StripPrefix("/static/",fileHandler))
-	*/
-
 	// Gorilla Web Toolkit
 	// Mux - HTTP Request multiplexer
 	r := mux.NewRouter()
@@ -51,9 +40,7 @@ func AppStart(conf AppConf) error{
 	// If the Request URL didn't match any routes
 	// default to static folder
 	// Order for which this function is declared is importent
-	// 
 	r.PathPrefix("/").Handler(fileHandler)
-
 	
 	// Handle Mux
 	http.Handle("/",r)
