@@ -35,5 +35,5 @@ func main() {
 
 	// Logging
 	log.Printf("About to listen on " + conf.Port)
-	// This is where the Defered function executes
+	// This is where the Deferred function executes
 }
