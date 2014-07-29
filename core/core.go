@@ -47,11 +47,13 @@ func AppStart(conf AppConf) error{
 
 func connectMgo(url string) {
 	session, err := mgo.Dial(url)
-	log.Printf("Successfully connected to Mongo")
 	if err != nil {
+		log.Printf("Cannot connect to MongoDB: %s,\n err: %s", url, err)
 		c := session.DB("dropkick").C("users")
 		fmt.Println(c)
 		//test := c.Find(bson.M{"name": "Bob"})
 		//fmt.Println(test)
+	} else {
+		log.Printf("Successfully connected to MongoDB: %s", session)
 	}
 }
