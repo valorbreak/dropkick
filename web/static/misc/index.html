@@ -1,0 +1,360 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" media="all">
+<script src="/bower_components/d3/d3.min.js" charset="utf-8"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+    <h1>HELLOW WORLDO</h1>
+    <p>Important Links: </p>
+    <ul><li>
+        <a href="http://joshondesign.com/p/books/canvasdeepdive/toc.html">Canvas Animation</a>
+    </li></ul>
+    <canvas id='chart' width='600' height='400'></canvas>
+    <hr />
+    <script type='text/javascript'>
+    // Data
+
+    var data = [
+        { name: 'tiger',    age: 23,  mass:  1500  },
+        { name: 'lion',     age: 28,  mass:  2500  },
+        { name: 'rat',      age: 3,   mass:  0.13  },
+        { name: 'cat',      age: 9,   mass:  4.8   },
+        { name: 'deer',     age: 8,   mass:  96    },
+        { name: 'cow',      age: 15,  mass:  1200  },
+        { name: 'elephant', age: 36,  mass: 3500   },
+        { name: 'human',    age: 85,  mass: 140    },
+    ]
+    </script>
+
+    <script>
+    // setup the canvas script
+    var chart = document.getElementById('chart');
+
+    // ctx is now a canvas object 
+    var ctx   = chart.getContext('2d');
+
+    var w = 600;
+    var h = 400;
+    ctx.fillStyle = '#f0f0ff';
+    ctx.fillRect(0, 0, w, h);
+
+    ctx.beginPath();
+    ctx.moveTo(10,10);
+    ctx.lineTo(10,390);
+    ctx.lineTo(590,390);
+    ctx.stroke();
+
+    ctx.fillStyle = 'black';
+    ctx.fillText('age', 20, 30);
+    ctx.fillText('mass', 100, 385);
+
+    for(var i=0; i<data.length; i++) {
+        var mammal = data[i];
+        ctx.fillStyle = '#0000ff';
+
+        /*
+    	ctx.fillRect (
+            mammal.mass / 30 + 40, // x coordinate
+            mammal.age * 3 + 40,  // y coordinate,
+            10,          //height
+            10           //width
+        )	
+       	*/
+    	
+    	var mass = mammal.mass / 30 + 40;
+        var age = mammal.age * 3 + 40;
+        var radius = 10;
+        
+    	circle(ctx,mass,age,radius);
+    }
+
+    function circle(ctx, cx, cy, radius) {
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI*2, false);
+        ctx.fill();
+    }
+    // End of Chart
+    </script>
+
+
+    <h2>Bar Line</h2>
+    <canvas width="600" height="600" id="canvas"></canvas>
+    <script type='text/javascript'>
+
+    // Start of Bar lines
+    var barLineData = [15,80,5,23,34,32];
+    var canvas = document.getElementById('canvas');
+    var bl2d = canvas.getContext('2d');
+
+    bl2d.fillStyle = "#EFEFEF";
+    bl2d.fillRect(0,0,600,600);
+
+    bl2d.fillStyle = 'blue';
+
+    for(var i=0; i<barLineData.length; i++){
+        var dp = barLineData[i];
+    	bl2d.fillRect(
+            25 + i*100,  // x
+            600-dp*5 -30,          // y
+            50,          // width
+            dp*5);       // height
+    }
+
+    //draw axis lines
+    bl2d.fillStyle = 'black';
+    bl2d.lineWidth = 3.0;
+    bl2d.beginPath();
+    bl2d.moveTo(10, 10);
+    bl2d.lineTo(10, 580);
+    bl2d.lineTo(580, 580);
+    bl2d.stroke();
+
+    </script>
+
+    <h2>Let's use D3</h2>
+    <p>Made in 2011 on Standford - Replacement for Protoviz</p>
+    <h3>Simple Chart in D3</h3>
+    <button id='update'>update</button>
+    <div class="d3example"></div>
+    <script type='text/javascript'>
+    var w = 500;   // save our width and height for later
+    var h = 300;
+    var dataset = [ 5, 10, 15, 20, 100,];
+    var svg = d3.select('div.d3example')
+                .append('svg')
+                .attr('w',w)
+                .attr('h',h)
+                .attr('width',w)
+                .attr('height',h);
+
+    var yscale = d3.scale.linear()
+        .domain([0, d3.max(dataset, function(d) { return d; })])
+        //.range([0, 100]);
+        .range([h-10, 10]);
+
+    svg.selectAll('rect')
+        .data(dataset)
+        .enter()
+        .append('rect')
+        .attr('fill','teal')
+        .attr('x',function(d,i) {
+            return i*30;
+        })
+        //.attr('y',function(d,i) {
+        //    return h-d*3;
+        //})
+        .attr('width', function(d,i) {
+            return 28;
+        })
+        //.attr('height', function(d,i) {
+        //    return d*3;
+        //})
+        
+        // Make the graph Scalable
+        .attr('y',function(d,i) {
+            return h-yscale(d);
+        })
+        .attr('height', function(d,i) {
+            return yscale(d);
+        })
+        ;
+
+    // Add Update Button
+    d3.select('button').on('click', function() {
+        //update the data
+        dataset = [ 400, 800, 100, 600, 500, 1000];
+        yscale.domain([0, d3.max(dataset, function(d) { return d; })])
+
+        //adjust the y values
+        svg.selectAll('rect')
+            .data(dataset)
+            // Add funky animation
+            .transition().duration(500)
+            .delay(function(d,i) {
+                return i/dataset.length * 1000; //using msec
+            })
+            .attr('y',function(d,i) {
+                //return h-yscale(d);
+                return yscale(d);
+            })
+            .attr('height', function(d,i) {
+                //return yscale(d);
+                return h-yscale(d)
+            });
+    });
+
+    var yaxis = d3.svg.axis()
+          .scale(yscale)
+          .orient('right')
+          .ticks(5)
+          ;
+
+    svg.append('g')
+      .attr('class','y axis') //add the axis class
+      .call(yaxis);
+
+    svg.select('.y.axis')
+        .transition()
+        .duration(1000)
+        .call(yaxis);
+    </script>
+    <style>
+    .axis path, .axis line{
+         fill: none;
+         stroke: black;
+         shape-rendering: crispEdges;
+    }
+    .axis text {
+        font-family: sans-serif;
+        font-size: 11px;
+    }
+
+    
+    svg {
+        border: 1px solid red;    
+    }
+    </style>
+    <h2>D3 USA map</h2>
+    <div class="USAMap"></div>
+    <script type='text/javascript'>
+    var w = 600;
+    var h = 400;
+
+    //setup our display area
+    var svgmap = d3.select('div.USAMap')
+                .append('svg')
+                .attr('w',w)
+                .attr('h',h)
+                .attr('width',w)
+                .attr('height',h);
+    var path = d3.geo.path();
+
+    //load the data
+    d3.json('us-states.json', function(json) {
+        //when the json file is loaded
+        // set up the paths for each state
+        /*svgmap.selectAll('path')
+            .data(json.features)
+            .enter()
+            .append("path")
+            .attr('d',path) //bind the converter
+            ;
+        */
+        d3.csv('us-ag-productivity-2004.csv', function(data) {
+            // smoosh function
+            matchByState(json,data);
+
+            var colors = [];
+            // some output colors
+            for(var i=1; i<=10; i++) {
+                var v = Math.round(i*255.0/10);
+                //colors.push('rgb('+v+',255,'+v+')');
+                colors.push('rgb(0,'+v+',0)');
+            }
+            var color = d3.scale.quantize().range(colors);
+
+            //function to get productivity value
+            function getValue(d) {
+                return parseFloat(d.value);
+            }
+
+            //set up the domain / input of our color scale
+            color.domain([
+                d3.min(data, getValue),
+                d3.max(data, getValue)
+                ]); 
+
+            //function to calculate a color based on the productivity value
+            function calcColor(d) {
+                var value = d.properties.value;
+                if(value) return color(value);  // get color from the color Scale
+                return '#ccc'; //gray if there is no value
+            }
+            // set up the paths for each state
+            svgmap.selectAll('path')
+                .data(json.features)
+                .enter()
+                .append("path")
+                .attr('d',path) //bind the converter
+                .attr('fill', calcColor)
+                .on('mouseover', function(d){
+                    d3.select(this)
+                        .transition().duration(250)
+                        .attr('fill', '#450340')
+                    console.log(d,'test');
+                    var coordinates = [0, 0];
+                    coordinates = d3.mouse(this);
+                    mouse.x = coordinates[0];
+                    mouse.y = coordinates[1];
+                    d3.select("#statename").text(d.properties.name);
+                    d3.select("#agvalue").text(d.properties.value);
+                    svgmap.append("text")
+                        .attr('x', function(d) {
+                            return mouse.x;
+                        })
+                        .attr('y', function(d) {
+                            return mouse.y;
+                        })
+                        .attr("dy", ".35em")
+                        .text(d.properties.name);
+
+                })
+                .on('mouseout', function() {
+                    d3.select(this)
+                        .transition().duration(250)
+                        .attr('fill', calcColor)
+                    d3.select("text")
+                        .remove();
+                })
+                ;
+            }); 
+
+            var mouse = {x: 0, y: 0};
+
+            /*document.addEventListener('mousemove', function(e){ 
+                mouse.x = e.clientX || e.pageX; 
+                mouse.y = e.clientY || e.pageY;
+                console.log(mouse,'mouse');
+            }, false);
+            */
+            
+            //console.log(json.features);      
+
+    });
+
+
+    function matchByState(json,data) {
+        // smoosh ag productivity data with the geojson data
+        for(var i=0; i<data.length; i++) {
+            var dataState = data[i].state;
+            for(var j=0; j<json.features.length; j++) {
+                var jsonState = json.features[j].properties.name;
+                if(dataState == jsonState) {
+                    json.features[j].properties.value = parseFloat(data[i].value);
+                    break;
+                }
+            }
+        }
+    }
+
+
+    //setup a projection
+    var projection = d3.geo.albersUsa()
+        .translate([w/2,h/2])
+        .scale(750) //1000 is the default scale
+        ;
+
+    var path = d3.geo.path().projection(projection);
+    </script>
+    <h2>Selected State =
+    <b id='statename'>name</b>
+    <b id='agvalue'>value</b>
+</h2>
+    <br />
+</div>
+</body>
+</html>

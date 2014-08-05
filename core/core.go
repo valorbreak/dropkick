@@ -6,6 +6,7 @@ import (
 	"log"
 	"github.com/valorbreak/dropkick/routes"
 	"gopkg.in/mgo.v2"
+	//"gopkg.in/mgo.v2/bson"
 )
 
 // Exportable struct
@@ -54,6 +55,6 @@ func connectMgo(url string) {
 		//test := c.Find(bson.M{"name": "Bob"})
 		//fmt.Println(test)
 	} else {
-		log.Printf("Successfully connected to MongoDB: %s", session)
+		log.Printf("Successfully connected to MongoDB:")
 	}
 }
