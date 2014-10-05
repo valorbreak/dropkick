@@ -8,24 +8,20 @@ import (
 	"log"
 )
 
-// this is the main function
-type dkConf struct {
-	Port   string
-	MgoURL string
-}
-
 func main() {
 
 	// Command Line Flags
 	// $ dropkick -h
 	mgoURL := flag.String("mongo", "mongodb://localhost:27017", "Mongo DB URL")
 	port := flag.String("port", "8080", "Default port is set to 8080")
-	dir := flag.String("directory", "web/", "directory of files")
+	dir := flag.String("directory", "web", "directory of files")
+	debugging := flag.String("debug", "0", "Enable Debugging")
+
 	flag.Parse()
 
 	log.Printf("Static File Directory: "+*dir)
-	conf := dkConf{*port, *mgoURL}
-	routeConfig := core.AppConf{*port, *dir, *mgoURL}
+
+	routeConfig := core.AppConf{*port, *dir, *mgoURL, *debugging}
 	// defer - runs the specified function before (this) function ends
 	defer core.AppStart(routeConfig)
 	
@@ -34,6 +30,7 @@ func main() {
 	fmt.Println(x)
 
 	// Logging
-	log.Printf("About to listen on " + conf.Port)
-	// This is where the Defered function executes
+	log.Printf("About to listen on " + *port)
+	// This is where the Deferred function executes
+
 }

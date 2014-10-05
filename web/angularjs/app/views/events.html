@@ -1,0 +1,17 @@
+<!--div ng-show="list">
+{{list}}
+</div-->
+
+
+<div ng-repeat="item in list" >
+  <span class="lead"><span style="color: #009922">{{$index + 1}}. </span> <a href="{{item.data.url}}" ng-bind-html-unsafe='item.data.title'>{{item.data.title}}</a></span>
+  <div style="font-size: 10px">{{item.data.selftext}}</div>
+</div>
+
+
+<!--tbody>
+  <tr ng-repeat="item in list">
+    <td>{{$index + 1}}. </td>
+    <td>{{item.data.title}}</td>
+  </tr>
+</tbody-->
