@@ -20,7 +20,7 @@ func main() {
 	// $ dropkick -h
 	mgoURL := flag.String("mongo", "mongodb://localhost:27017", "Mongo DB URL")
 	port := flag.String("port", "8080", "Default port is set to 8080")
-	dir := flag.String("directory", "web/static", "directory of files")
+	dir := flag.String("directory", "web/angularjs/dist", "directory of files")
 	flag.Parse()
 
 	log.Printf("Static File Directory: "+*dir)

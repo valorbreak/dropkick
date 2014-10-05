@@ -2,4 +2,11 @@ data/
 assets/bower_components
 .idea
 web/misc
-
+web/angularjs/dist
+.bowerrc
+.editorconfig
+.gitattributes
+.gitignore
+.jshintrc
+.tmp
+.travis.yml

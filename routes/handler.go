@@ -2,12 +2,16 @@ package routes
 
 import (
 	"fmt"
-	"net/http"
-	"log"
+	http "net/http"
+	log "log"
 )
+
 /**
  *	Private Functions always have the first letter lowercased
  *	These functions are only viewable inside the package
+ *
+ *  Status Codes are in the net/http package 
+ *  http://golang.org/src/pkg/net/http/status.go
  */
 
 func welcomeHandler(w http.ResponseWriter, r *http.Request){
@@ -25,6 +29,18 @@ func jsonHandler(w http.ResponseWriter, r *http.Request){
 		{"json":"test"}
 	`
 	log.Printf("Accessed: /%s", r.URL.Path[1:])
+	//log.Printf("W: /%s", w)
+	
+	//resp := &http.Response{
+  	//	Status:     "200 OK YES",
+  	//	StatusCode: 200,
+  	//}
+  	//w.Write(resp)
+  	w.Header().Add("New Custom Header",r.URL.Path[1:])
+  	//w.Header().Set("Access-Control-Allow-Origin", "*")
+	// Custom Status Code
+	w.WriteHeader(http.StatusCreated)
+
 	fmt.Fprint(w,jsonStream)
 }
 

@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"net/http"
+	"http"
 	"github.com/gorilla/mux"
 )
 
@@ -33,7 +33,7 @@ func GetRouter(conf AppConf) *mux.Router{
 	r.HandleFunc("/api/json", jsonHandler)
 	r.HandleFunc("/api/user", userHandler)
 	r.HandleFunc("/api/user/edit", userEditHandler)
-	
+
 	//r.HandleFunc("/", jsonHandler)
 
 	// Static Files are handled here
