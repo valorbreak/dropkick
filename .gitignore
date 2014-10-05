@@ -10,3 +10,5 @@ web/angularjs/dist
 .jshintrc
 .tmp
 .travis.yml
+web/sites/themes/agency
+web/img

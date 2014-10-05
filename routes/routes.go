@@ -42,7 +42,7 @@ func GetRouter(conf AppConf) *mux.Router{
 	apiRoute.HandleFunc("/{key}/", apiHandler)
 	apiRoute.HandleFunc("/{key}/details", apiHandler)
 
-	r.HandleFunc("/", adminHandler)
+
 	r.HandleFunc("/admin", adminHandler)
 	r.HandleFunc("/admin{ext}", adminHandler)
 
@@ -51,12 +51,14 @@ func GetRouter(conf AppConf) *mux.Router{
 	entityRoute.HandleFunc("/{type}/", entityTypeHandler)
 	entityRoute.HandleFunc("/{type}/{nid}", entityTypeHandler)
 
-	//r.HandleFunc("/", jsonHandler)
-
-	// Static Files are handled here
-	// If the Request URL didn't match any routes
-	// default to static folder
-	// Order for which this function is declared is important
+	/**
+	 * Static Files are handled here
+	 * If the Request URL didn't match any routes
+	 * default to static folder
+	 * Order for which this function is declared is important
+	 * Set the default front page here
+	 */
+	r.HandleFunc("/", adminHandler)
 	r.PathPrefix("/").Handler(fileHandler)
 
 	return r

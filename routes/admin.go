@@ -10,20 +10,12 @@ import (
 )
 
 func adminHandler(w http.ResponseWriter,r *http.Request){
-	debugMessage(r)
 	vars := mux.Vars(r)
 	body := vars["args"]
-
 
 	content := Page{
 		Title: "Golang",
 		Body: body,
-	}
-	t, err := template.ParseFiles(coreAppConf.Dir + "/sites/themes/ice/index.html")
-
-	if err != nil{
-		log.Printf("File not found: %s", err)
-		return
 	}
 
 	if(".json" == vars["ext"]){
@@ -31,11 +23,16 @@ func adminHandler(w http.ResponseWriter,r *http.Request){
 		if(err != nil){
 			return
 		}
-		log.Printf("Accessed: %s", b)
+		debugMessage(r)
 		stringB := string(b)
 		fmt.Fprint(w,stringB)
 	} else{
-		log.Printf("Accessed: %s", r)
+		debugMessage(r)
+		t, err := template.ParseFiles(coreAppConf.Dir + "/sites/themes/ice/index.html")
+		if err != nil {
+			log.Printf("File not found: %s", err)
+			return
+		}
 		t.Execute(w, content)
 	}
 }

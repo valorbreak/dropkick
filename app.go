@@ -16,7 +16,7 @@ func main() {
 	port := flag.String("port", "8080", "Default port is set to 8080")
 	dir := flag.String("directory", "web", "directory of files")
 	debugging := flag.String("debug", "0", "Enable Debugging")
-	//dir := flag.String("directory", "web/static", "directory of files")
+
 	flag.Parse()
 
 	log.Printf("Static File Directory: "+*dir)

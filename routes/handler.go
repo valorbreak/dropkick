@@ -28,7 +28,7 @@ type Page struct {
 func debugMessage(r *http.Request){
 	log.Printf("Accessed: %s", r.URL.Path)
 	if coreAppConf.Debugging == "1" {
-	log.Printf("Debug %s", r)
+		log.Printf("Debug %s", r)
 	}
 }
 
