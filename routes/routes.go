@@ -14,10 +14,10 @@ type AppConf struct{
 	Debugging string
 }
 
-// make the configuration available for handlers
+// Make the configuration available for handlers.
 var coreAppConf AppConf
 
-/*
+/**
  * Since we are returning the router, we could replace this with any mux routing libraries	
  */
 func GetRouter(conf AppConf) *mux.Router{
@@ -58,7 +58,7 @@ func GetRouter(conf AppConf) *mux.Router{
 	 * Order for which this function is declared is important
 	 * Set the default front page here
 	 */
-	r.HandleFunc("/", adminHandler)
+	r.HandleFunc("/", indexHandler)
 	r.PathPrefix("/").Handler(fileHandler)
 
 	return r
