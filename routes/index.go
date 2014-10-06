@@ -13,7 +13,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request){
 		Title: "Golang",
 		Body: "content",
 	}
-	t, err := template.ParseFiles(coreAppConf.Dir + "/sites/themes/flame/index.html")
+	t, err := template.ParseFiles(coreAppConf.Dir + "/sites/themes/agency/index.html")
 	if err != nil {
 		log.Printf("File not found: %s", err)
 		return
