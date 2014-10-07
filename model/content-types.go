@@ -8,16 +8,20 @@ package model
  *  http://golang.org/src/pkg/net/http/status.go
  */
 type Page struct {
-	Header string
-	Title string
-	Body string
-	Type string
-	Id string
-	Info string
-	Debug string
+	Header 	string 	`json:"header,omitempty"`
+	Title 	string 	`json:"title,omitempty"`
+	Body 	string 	`json:"body,omitempty"`
+	Type 	string	`json:"type,omitempty"`
+	Id 		string	`json:"id,omitempty"`
+	Info 	string	`json:"info,omitempty"`
+	Debug 	string	`json:"debug,omitempty"`
 }
 
 type Post struct {
 	Page
-	Date string
+	Date	string		`json:"header"`
+}
+
+type entity struct {
+	Uuid 	string
 }

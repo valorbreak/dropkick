@@ -1,9 +1,7 @@
 package main
 
 import (
-	"fmt"
 	"github.com/valorbreak/dropkick/core"
-	"github.com/valorbreak/dropkick/model"
 	"flag"
 	"log"
 )
@@ -19,18 +17,12 @@ func main() {
 
 	flag.Parse()
 
-	log.Printf("Static File Directory: "+*dir)
-
-	routeConfig := core.AppConf{*port, *dir, *mgoURL, *debugging}
-	// defer - runs the specified function before (this) function ends
-	defer core.AppStart(routeConfig)
-	
-	x := model.Bad()
-	//core.Execute()
-	fmt.Println(x)
-
 	// Logging
+	log.Printf("Static File Directory: "+ *dir)
 	log.Printf("About to listen on " + *port)
-	// This is where the Deferred function executes
+
+	// Start the application
+	routeConfig := core.AppConf{*port, *dir, *mgoURL, *debugging}
+	core.AppStart(routeConfig)
 
 }
