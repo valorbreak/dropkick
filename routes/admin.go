@@ -28,7 +28,11 @@ func adminHandler(w http.ResponseWriter,r *http.Request){
 		fmt.Fprint(w,stringB)
 	} else{
 		debugMessage(r)
-		t, err := template.ParseFiles(coreAppConf.Dir + "/sites/themes/ice/index.html")
+		lp := coreAppConf.Dir + "/sites/themes/ice/layout.html";
+		fp := coreAppConf.Dir + "/sites/themes/ice/index.html";
+		hp := coreAppConf.Dir + "/sites/themes/ice/header.html";
+
+		t, err := template.ParseFiles(lp,fp,hp)
 		if err != nil {
 			log.Printf("File not found: %s", err)
 			return

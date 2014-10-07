@@ -1,43 +1,30 @@
-<html>
-	<head>
-		<!-- Get dependencies using bower | Seriously it's 2014 guys -->
-		<link rel="stylesheet" type="text/css" href="/sites/themes/ice/bower_components/bootstrap/dist/css/bootstrap.min.css" media="all">
-		<link rel="stylesheet" type="text/css" href="/sites/themes/ice/bower_components/bootstrap/dist/css/bootstrap-theme.min.css" media="all">
-		<link rel="stylesheet" type="text/css" href="/sites/themes/ice/styles/css/style.css" media="all">
-    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  </head>
-	<body>
-		<div class="container">
-      <div class="jumbotron" style="margin-top: 20px">
-        <h1>Dropkick - Single Page App</h1>
-        <p>Administrator Pages are rendered using html/template</p>
-        <p>At last, No more Logic and HTML hacking</p>
+{{ define "title" }}An example layout{{ end }}
+{{ define "content" }}
+  <div class="container">
+    <div class="jumbotron" style="margin-top: 20px">
+      <h1>Dropkick - Single Page App</h1>
+      <p>Administrator Pages are rendered using html/template</p>
+      <p>At last, No more Logic and HTML hacking</p>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Separation of concerns</h2>
+        <p>Each developer has their own unique strengths. Imagine an environment where developers can pursue the things they want to master</p>
       </div>
-      <div class="row">
-        <div class="col-md-6">
-          <h2>Separation of concerns</h2>
-          <p>Each developer has their own unique strengths. Imagine an environment where developers can pursue the things they want to master</p>
-        </div>
-        <div class="col-md-6">
-          <h2>Continuous Delivery</h2>
-          <p>Bring new features to your clients with speed and quality</p>
-        </div>
+      <div class="col-md-6">
+        <h2>Continuous Delivery</h2>
+        <p>Bring new features to your clients with speed and quality</p>
       </div>
-      <div class="row">
-        <div class="col-md-6">
-          <h2>Ease of Deployment</h2>
-          <p>Moving from dev > staging > production is easier than ever</p>
-        </div>
-        <div class="col-md-6">
-          <h2>Community Driven</h2>
-          <p>Fully Open Source</p>
-        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Ease of Deployment</h2>
+        <p>Moving from dev > staging > production is easier than ever</p>
       </div>
-		</div>
-
-		<!-- Load the scripts last -->
-		<script src="/sites/themes/ice/bower_components/d3/d3.min.js" charset="utf-8"></script>
-		<script src="/sites/themes/ice/bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
-		<script src="/sites/themes/ice/bower_components/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
-	</body>
-</html>
+      <div class="col-md-6">
+        <h2>Community Driven</h2>
+        <p>Fully Open Source</p>
+      </div>
+    </div>
+  </div>
+{{ end }}

@@ -11,4 +11,5 @@ web/angularjs/dist
 .tmp
 .travis.yml
 web/sites/themes/agency
+logs/
 web/img
