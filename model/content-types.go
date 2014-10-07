@@ -18,7 +18,7 @@ type Page struct {
 }
 
 type Post struct {
-	Pagego
+	Page
 	Date string `json:"header"`
 }
 
