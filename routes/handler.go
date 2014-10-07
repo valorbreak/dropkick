@@ -5,25 +5,10 @@ import (
 	"net/http"
 	"log"
 	"github.com/gorilla/mux"
+	"github.com/valorbreak/dropkick/model"
 	"encoding/json"
 )
 
-/**
- *	Private Functions always have the first letter lowercase
- *	These functions are only viewable inside the package
- *
- *  Status Codes are in the net/http package 
- *  http://golang.org/src/pkg/net/http/status.go
- */
-type Page struct {
-	Header string
-	Title string
-	Body string
-	Type string
-	Id string
-	Info string
-	Debug string
-}
 
 func debugMessage(r *http.Request){
 	log.Printf("Accessed: %s", r.URL.Path)
@@ -84,7 +69,7 @@ func apiHandler(w http.ResponseWriter, r *http.Request){
 
 func entityHandler(w http.ResponseWriter, r *http.Request){
 	//vars := mux.Vars(r)
-	content := Page{
+	content := model.Page{
 		Title: "Golang",
 		Debug: "string",
 		Info: "Information about the entity",
@@ -101,7 +86,7 @@ func entityHandler(w http.ResponseWriter, r *http.Request){
 
 func entityTypeHandler(w http.ResponseWriter, r *http.Request){
 	vars := mux.Vars(r)
-	content := Page{
+	content := model.Page{
 		Title: "Golang",
 		Type: vars["type"],
 		Id: vars["id"],

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"log"
-	"os"
+	//"os"
 	"github.com/valorbreak/dropkick/routes"
 	mgo "gopkg.in/mgo.v2"
 	//"gopkg.in/mgo.v2/bson"
@@ -34,22 +34,22 @@ func AppStart(conf AppConf) error{
 	http.Handle("/",r)
 	// http.Handle("/",fileHandler)
 
-	f, err := os.OpenFile("logs/messages.log", os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666)
+	/*f, err := os.OpenFile("logs/messages.log", os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666)
 	if err != nil {
 	    log.Fatal("error opening file: %v", err)
 	}
 	defer f.Close()
 
-	log.SetOutput(f)
+	log.SetOutput(f)*/
 	log.Printf("Resources are now available")
 	log.Printf("Directory %s", conf.Dir)
 	// Start Listening on port
 	port := ":" + conf.Port
 	err2 := http.ListenAndServe(port, r)
 	if err2 != nil {
-		log.Fatal("ListenAndServe: ", err)
+		log.Fatal("ListenAndServe: ", err2)
 	}
-	return err;
+	return err2;
 
 
 }
@@ -63,6 +63,6 @@ func connectMgo(url string) {
 		//test := c.Find(bson.M{"name": "Bob"})
 		//fmt.Println(test)
 	} else {
-		log.Printf("Successfully connected to MongoDB:")
+		log.Printf("Successfully connected to MongoDB: %s", url)
 	}
 }

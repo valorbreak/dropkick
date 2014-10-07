@@ -42,9 +42,9 @@ func GetRouter(conf AppConf) *mux.Router{
 	apiRoute.HandleFunc("/{key}/", apiHandler)
 	apiRoute.HandleFunc("/{key}/details", apiHandler)
 
-
 	r.HandleFunc("/admin", adminHandler)
 	r.HandleFunc("/admin{ext}", adminHandler)
+	r.HandleFunc("/admin/{args}", adminHandler)
 
 	entityRoute := r.PathPrefix("/entity").Subrouter()
 	entityRoute.HandleFunc("/", entityTypeHandler)

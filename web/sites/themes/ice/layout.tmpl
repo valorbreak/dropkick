@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <title>{{ template "title" . }}</title>
+    <!-- Get dependencies using bower  -->
+    {{ template "header" . }}
+  </head>
+  <body>
+    {{ template "content" . }}
+	<!-- Load the scripts last -->
+	<script src="/sites/themes/ice/bower_components/d3/d3.min.js" charset="utf-8"></script>
+	<script src="/sites/themes/ice/bower_components/jquery/dist/jquery.min.js" charset="utf-8"></script>
+	<script src="/sites/themes/ice/bower_components/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
+  </body>
+</html>

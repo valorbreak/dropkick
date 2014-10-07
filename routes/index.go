@@ -5,11 +5,12 @@ import (
 	"net/http"
 	"log"
 	"html/template"
+	"github.com/valorbreak/dropkick/model"
 )
 
 func indexHandler(w http.ResponseWriter, r *http.Request){
 	debugMessage(r)
-	content := Page{
+	content := model.Page{
 		Title: "Golang",
 		Body: "content",
 	}

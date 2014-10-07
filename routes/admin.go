@@ -3,19 +3,29 @@ package routes
 import (
 	"fmt"
 	"net/http"
-	"log"
 	"html/template"
+	"log"
 	"github.com/gorilla/mux"
+	"github.com/valorbreak/dropkick/model"
 	"encoding/json"
 )
+
+var frontPage = template.Must(template.ParseFiles(
+	"web/sites/themes/ice/layout.tmpl",
+	"web/sites/themes/ice/index.tmpl",
+	"web/sites/themes/ice/header.tmpl",
+))
 
 func adminHandler(w http.ResponseWriter,r *http.Request){
 	vars := mux.Vars(r)
 	body := vars["args"]
 
-	content := Page{
-		Title: "Golang",
-		Body: body,
+	content := model.Post{
+		Page: model.Page{
+			Title: "test",
+			Body: body,
+		},
+		Date: "102304",
 	}
 
 	if(".json" == vars["ext"]){
@@ -28,15 +38,7 @@ func adminHandler(w http.ResponseWriter,r *http.Request){
 		fmt.Fprint(w,stringB)
 	} else{
 		debugMessage(r)
-		lp := coreAppConf.Dir + "/sites/themes/ice/layout.html";
-		fp := coreAppConf.Dir + "/sites/themes/ice/index.html";
-		hp := coreAppConf.Dir + "/sites/themes/ice/header.html";
-
-		t, err := template.ParseFiles(lp,fp,hp)
-		if err != nil {
-			log.Printf("File not found: %s", err)
-			return
-		}
-		t.Execute(w, content)
+		log.Printf("Debug: %s", content.Title)
+		frontPage.Execute(w, content)
 	}
 }
