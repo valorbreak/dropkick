@@ -1,6 +1,5 @@
 package model
 
-
-func Bad() (bool){
+func Bad() bool {
 	return true
 }

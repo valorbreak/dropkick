@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/valorbreak/dropkick/core"
 	"flag"
+	"github.com/valorbreak/dropkick/core"
 	"log"
 )
 
@@ -18,7 +18,7 @@ func main() {
 	flag.Parse()
 
 	// Logging
-	log.Printf("Static File Directory: "+ *dir)
+	log.Printf("Static File Directory: " + *dir)
 	log.Printf("About to listen on " + *port)
 
 	// Start the application
