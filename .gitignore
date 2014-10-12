@@ -1,8 +1,8 @@
-data/
-assets/bower_components
+/data/
+/assets/bower_components
 .idea
 web/misc
-web/angularjs/dist
+/web/angularjs/dist
 .bowerrc
 .editorconfig
 .gitattributes
@@ -10,6 +10,8 @@ web/angularjs/dist
 .jshintrc
 .tmp
 .travis.yml
-web/sites/themes/agency
-logs/
-web/img
+/web/sites/themes/agency
+/logs
+/web/img
+/dist
+dropkick.iml
