@@ -1,5 +1,4 @@
 /data/
-/assets/bower_components
 .idea
 web/misc
 /web/angularjs/dist
