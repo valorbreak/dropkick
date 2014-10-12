@@ -11,6 +11,5 @@ web/misc
 .travis.yml
 /web/sites/themes/agency
 /logs
-/web/img
 /dist
 dropkick.iml
