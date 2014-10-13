@@ -3,30 +3,22 @@ package routes
 import (
 	"net/http"
 	"github.com/gorilla/mux"
+	"github.com/valorbreak/dropkick/core/config"
 )
 
-// Exportable struct
-// Capitalize the type and the fields to make it exportable
-type AppConf struct{
-	Port string
-	Dir string
-	MgoURL string
-	Debugging string
-}
-
 // Make the configuration available for handlers.
-var coreAppConf AppConf
+var coreAppConf config.AppConf
 
 /**
  * Since we are returning the router, we could replace this with any mux routing libraries	
  */
-func GetRouter(conf AppConf) *mux.Router{
+func GetRouter(conf config.AppConf) *mux.Router{
 
 	// Set this variable globally for the package
 	coreAppConf = conf;
 
 	// Set the Urls here
-	fs := http.Dir(conf.Dir)
+	fs := http.Dir(conf.Directory)
 	fileHandler := http.FileServer(fs)
 
 	// Gorilla Web Toolkit
@@ -50,6 +42,10 @@ func GetRouter(conf AppConf) *mux.Router{
 	entityRoute.HandleFunc("/", entityTypeHandler)
 	entityRoute.HandleFunc("/{type}/", entityTypeHandler)
 	entityRoute.HandleFunc("/{type}/{nid}", entityTypeHandler)
+
+	contactRoute := r.PathPrefix("/contact").Subrouter()
+	contactRoute.HandleFunc("/", contactHandler).Methods("GET")
+	contactRoute.HandleFunc("/", contactHandlerPost).Methods("POST")
 
 	/**
 	 * Static Files are handled here

@@ -6,20 +6,12 @@ import (
 	"log"
 	//"os"
 	"github.com/valorbreak/dropkick/routes"
+	"github.com/valorbreak/dropkick/core/config"
 	mgo "gopkg.in/mgo.v2"
 	//"gopkg.in/mgo.v2/bson"
 )
 
-// Exportable struct
-// Capitalize the type and the fields to make it exportable
-type AppConf struct{
-	Port string
-	Dir string
-	MgoURL string
-	Debugging string
-}
-
-func AppStart(conf AppConf) error{
+func AppStart(conf config.AppConf) error{
 	// Logging
 	log.Printf("Initialize Core\n")
 	
@@ -27,9 +19,9 @@ func AppStart(conf AppConf) error{
 	// go accepts a func that runs concurrently
 	go connectMgo(conf.MgoURL)
 
-	routeConf := routes.AppConf{conf.Port, conf.Dir, conf.MgoURL, conf.Debugging}
+	//routeConf := config.AppConf{conf.Port, conf.Directory, conf.MgoURL, conf.Debugging}
+	r := routes.GetRouter(conf)
 
-	r := routes.GetRouter(routeConf)
 	// Handle Mux
 	http.Handle("/",r)
 	// http.Handle("/",fileHandler)
@@ -42,16 +34,14 @@ func AppStart(conf AppConf) error{
 
 	log.SetOutput(f)*/
 	log.Printf("Resources are now available")
-	log.Printf("Directory %s", conf.Dir)
+	log.Printf("Directory %s", conf.Directory)
 	// Start Listening on port
 	port := ":" + conf.Port
-	err2 := http.ListenAndServe(port, r)
-	if err2 != nil {
-		log.Fatal("ListenAndServe: ", err2)
+	err := http.ListenAndServe(port, r)
+	if err != nil {
+		log.Fatal("ListenAndServe: ", err)
 	}
-	return err2;
-
-
+	return err;
 }
 
 func connectMgo(url string) {
