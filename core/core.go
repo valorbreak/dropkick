@@ -2,19 +2,19 @@ package core
 
 import (
 	"fmt"
-	"net/http"
 	"log"
+	"net/http"
 	//"os"
-	"github.com/valorbreak/dropkick/routes"
 	"github.com/valorbreak/dropkick/core/config"
+	"github.com/valorbreak/dropkick/routes"
 	mgo "gopkg.in/mgo.v2"
 	//"gopkg.in/mgo.v2/bson"
 )
 
-func AppStart(conf config.AppConf) error{
+func AppStart(conf config.AppConf) error {
 	// Logging
 	log.Printf("Initialize Core\n")
-	
+
 	// This is a GoRoutine
 	// go accepts a func that runs concurrently
 	go connectMgo(conf.MgoURL)
@@ -23,7 +23,7 @@ func AppStart(conf config.AppConf) error{
 	r := routes.GetRouter(conf)
 
 	// Handle Mux
-	http.Handle("/",r)
+	http.Handle("/", r)
 	// http.Handle("/",fileHandler)
 
 	/*f, err := os.OpenFile("logs/messages.log", os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666)
@@ -41,7 +41,7 @@ func AppStart(conf config.AppConf) error{
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
-	return err;
+	return err
 }
 
 func connectMgo(url string) {

@@ -1,21 +1,21 @@
 package routes
 
 import (
-	"net/http"
 	"github.com/gorilla/mux"
 	"github.com/valorbreak/dropkick/core/config"
+	"net/http"
 )
 
 // Make the configuration available for handlers.
 var coreAppConf config.AppConf
 
 /**
- * Since we are returning the router, we could replace this with any mux routing libraries	
+ * Since we are returning the router, we could replace this with any mux routing libraries
  */
-func GetRouter(conf config.AppConf) *mux.Router{
+func GetRouter(conf config.AppConf) *mux.Router {
 
 	// Set this variable globally for the package
-	coreAppConf = conf;
+	coreAppConf = conf
 
 	// Set the Urls here
 	fs := http.Dir(conf.Directory)
@@ -24,10 +24,10 @@ func GetRouter(conf config.AppConf) *mux.Router{
 	// Gorilla Web Toolkit
 	// Mux - HTTP Request multiplexer
 	r := mux.NewRouter()
-	
+
 	// Trailing slash Redirects to non-trailing slash
 	r.StrictSlash(true)
-	
+
 	// Set Routing Here
 	apiRoute := r.PathPrefix("/api").Subrouter()
 	apiRoute.HandleFunc("/", apiHandler)
@@ -59,4 +59,3 @@ func GetRouter(conf config.AppConf) *mux.Router{
 
 	return r
 }
-

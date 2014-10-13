@@ -1,12 +1,12 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"github.com/valorbreak/dropkick/core"
 	"github.com/valorbreak/dropkick/core/config"
-	"log"
 	"io/ioutil"
-	"encoding/json"
+	"log"
 )
 
 func main() {
@@ -26,12 +26,12 @@ func main() {
 	// Read config.json for site specific configuration
 	configFile, err := ioutil.ReadFile("config.json")
 	if err != nil {
-		log.Printf("Config File Not Found: %s",err)
+		log.Printf("Config File Not Found: %s", err)
 	}
 
 	err = json.Unmarshal(configFile, &config)
-	if err != nil{
-		log.Printf("Error Reading the JSON file: %s",err)
+	if err != nil {
+		log.Printf("Error Reading the JSON file: %s", err)
 	}
 
 	log.Printf("Listening on Port: %s", config.Port)

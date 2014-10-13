@@ -1,5 +1,5 @@
 package views
 
-func Good() (bool){
-	return false;
+func Good() bool {
+	return false
 }

@@ -1,18 +1,17 @@
 package routes
 
-
 import (
-	"net/http"
-	"log"
-	"html/template"
 	"github.com/valorbreak/dropkick/model"
+	"html/template"
+	"log"
+	"net/http"
 )
 
-func indexHandler(w http.ResponseWriter, r *http.Request){
+func indexHandler(w http.ResponseWriter, r *http.Request) {
 	debugMessage(r)
 	content := model.Page{
 		Title: "Golang",
-		Body: "content",
+		Body:  "content",
 	}
 	t, err := template.ParseFiles(coreAppConf.Directory + "/sites/themes/agency/index.html")
 	if err != nil {

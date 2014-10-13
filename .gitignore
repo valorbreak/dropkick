@@ -12,4 +12,5 @@ web/misc
 /web/sites/themes/agency
 /logs
 /dist
+/config.json
 dropkick.iml
