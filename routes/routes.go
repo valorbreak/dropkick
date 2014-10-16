@@ -9,8 +9,8 @@ import (
 // Make the configuration available for handlers.
 var coreAppConf config.AppConf
 
-/**
- * Since we are returning the router, we could replace this with any mux routing libraries
+/*
+ Since we are returning the router, we could replace this with any mux routing libraries
  */
 func GetRouter(conf config.AppConf) *mux.Router {
 
