@@ -1,3 +1,5 @@
+[![Gobuild Download](http://gobuild.io/badge/github.com/valorbreak/dropkick/downloads.svg)](http://gobuild.io/github.com/valorbreak/dropkick)
+
 # Dropkick
 Introducing a highly opinionated Content Management System,
 (EXPERIMENTAL) - Drop Kick GO!
