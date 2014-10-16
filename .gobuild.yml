@@ -1,0 +1,7 @@
+author: uri@afterofficeit.com
+description: >
+        Dropkick GO!
+
+filesets:
+    includes:
+        - web
