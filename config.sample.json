@@ -1,0 +1,11 @@
+{
+    "mgoURL" : "mongodb://192.168.1.1:27017",
+    "port" : "80",
+    "directory" : "web",
+    "debugging" : "0",
+    "smtp-server-url" : "smtp.gmail.com",
+    "smtp-port" : "587",
+    "smtp-username" : "example",
+    "smtp-password" : "*******",
+    "postgres-port" : "5432"
+}

@@ -22,7 +22,9 @@ Introducing a highly opinionated Content Management System,
 
 ## Install with Go
 - `go install`
-- `dropkick`
+- Rename config.sample.json to config.json
+- Changes Preferred settings in config.json
+- run `dropkick`
 
 ## Command Line Help
 - `dropkick -h`
