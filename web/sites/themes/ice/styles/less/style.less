@@ -1,5 +1,51 @@
+@import 'variables.less';
+@import 'variables-bootstrap.less';
+
+// Mobile First CSS
 body {
-  font-family: 'PT Sans', sans-serif;
+  font-family: 'Lato', sans-serif;
   color: #000;
+  padding: 70px 0 0 0;
 }
 
+.form-control-feedback {
+  position: relative;
+  display: inline;
+  top: 0;
+  line-height: 14px;
+}
+
+.navbar-inverse{
+  background-color: #3071a9;
+  border: 0;
+  .navbar-brand{
+    color: @white;
+  }
+  .navbar-nav > li > a {
+    color: @white;
+  }
+  .navbar-nav > li > a:hover {
+    color: #EEE;
+    background: #444;
+  }
+  .navbar-nav{
+    float: none;
+  }
+}
+
+
+@media (min-width: @screen-sm){
+
+}
+
+@media (min-width: @screen-md){
+  .navbar-inverse {
+    .navbar-nav {
+      float: right;
+    }
+  }
+}
+
+@media (min-width: @screen-lg){
+
+}

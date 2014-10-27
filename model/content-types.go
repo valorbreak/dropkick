@@ -25,3 +25,8 @@ type Post struct {
 type entity struct {
 	Uuid string
 }
+
+type Form struct {
+	DateSubmitted string
+
+}

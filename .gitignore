@@ -8,7 +8,9 @@ web/misc
 .gitignore
 .jshintrc
 .tmp
-.travis.yml
+/GoDeps
+dropkick.exe
+/web/angularjs
 /web/sites/themes/agency
 /logs
 /dist

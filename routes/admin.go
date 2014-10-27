@@ -5,17 +5,10 @@ import (
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/valorbreak/dropkick/model"
-	"html/template"
 	"log"
 	"net/http"
 	"net/smtp"
 )
-
-var frontPage = template.Must(template.ParseFiles(
-	"web/sites/themes/ice/layout.tmpl",
-	"web/sites/themes/ice/index.tmpl",
-	"web/sites/themes/ice/header.tmpl",
-))
 
 func adminHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
@@ -44,12 +37,6 @@ func adminHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-var contactPage = template.Must(template.ParseFiles(
-	"web/sites/themes/ice/layout.tmpl",
-	"web/sites/themes/ice/templates/contact.tmpl",
-	"web/sites/themes/ice/header.tmpl",
-))
-
 func contactHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	body := vars["args"]
@@ -73,6 +60,8 @@ func contactHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		debugMessage(r)
 		log.Printf("Debug: %s", content.Title)
+		log.Printf("get email?: %s", r.Form.Get("InputEmail"))
+		log.Printf("Method: %s", r.Method)
 		contactPage.Execute(w, content)
 	}
 }
@@ -98,4 +87,13 @@ func contactHandlerPost(w http.ResponseWriter, r *http.Request) {
 	auth := smtp.PlainAuth("", username, password, "smtp.gmail.com")
 	smtpServerUrl := coreAppConf.SmtpServerUrl + ":" + coreAppConf.SmtpPort
 	smtp.SendMail(smtpServerUrl, auth, email, to, []byte(body))
+
+	// Redirect to itself, PRG (Post, Request, Get) implementation
+	log.Printf("Method Post: %s", r.Method)
+	log.Printf("URL Path: %s", r.URL.Path)
+	log.Printf("Remote Addr: %s", r.RemoteAddr)
+	log.Printf("Request URI: %s", r.RequestURI)
+	log.Printf("Referrer URL: %s", r.Header)
+
+	http.Redirect(w, r, "/"+r.URL.Path, 301)
 }

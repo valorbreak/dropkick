@@ -20,21 +20,27 @@ func AppStart(conf config.AppConf) error {
 	go connectMgo(conf.MgoURL)
 
 	//routeConf := config.AppConf{conf.Port, conf.Directory, conf.MgoURL, conf.Debugging}
-	r := routes.GetRouter(conf)
+	routes.SetConfig(conf)
+	r := routes.GetRouter()
 
 	// Handle Mux
 	http.Handle("/", r)
+
 	// http.Handle("/",fileHandler)
 
-	/*f, err := os.OpenFile("logs/messages.log", os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666)
+	/*
+	f, err := os.OpenFile("logs/messages.log", os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666)
 	if err != nil {
 	    log.Fatal("error opening file: %v", err)
 	}
 	defer f.Close()
 
-	log.SetOutput(f)*/
+	log.SetOutput(f)
+	*/
+
 	log.Printf("Resources are now available")
 	log.Printf("Directory %s", conf.Directory)
+
 	// Start Listening on port
 	port := ":" + conf.Port
 	err := http.ListenAndServe(port, r)
